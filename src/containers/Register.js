@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Popover from 'react-bootstrap/Popover'
 import Row from 'react-bootstrap/Row'
 import axios from 'axios'
 import Loader from '../components/Loader'
@@ -161,11 +163,24 @@ export default class Register extends React.Component{
                     </Form.Group>
                     </Form.Row>
                     <Form.Group>
-                    <Form.Check
-                        required
-                        label="Agree to terms and conditions"
-                        feedback="You must agree before submitting."
-                    />
+                      <OverlayTrigger
+                        delay={{ show: 0, hide: 0 }}
+                        placement="top"
+                        overlay={
+                            <Popover
+                            title={`Site Purpose`}
+                            >
+                            Currently you can login, register, and view photos.
+                            </Popover>
+                            }
+                        >
+                            <Form.Check
+                            required
+                            label="I understand this is a test site."
+                            feedback="You must agree before submitting."
+                            onClick={this.popup}
+                            />
+                        </OverlayTrigger>
                     </Form.Group>
                 </Form>
             </Modal.Body>
